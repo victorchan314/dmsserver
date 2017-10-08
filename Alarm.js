@@ -12,13 +12,13 @@ module.exports = {
 
     handle: function(j) {
                 if (j['dismiss'] == false) {
-                    a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
+                    a.add(j["push_token"], j["alarm_id"], j["start_time"], j["interval"], j["message"], j["contact"], j["warning_time"]);
                     return (1, null);
                 } else if (j['dismiss'] == true) { 
-                    a.defuse(hash);
+                    a.defuse(j["alarm_id"]);
                     return (1, null);
                 } else if (false) {
-                    a.del(hash);
+                    a.del(j["alarm_id"]);
                     return (1, null);
                 } else {
                     return (0, "Error: j not recognizable");
