@@ -17,7 +17,7 @@ server = http.createServer(function(req, res) {
             body += data;
         });
         req.on('end', function() {
-            j = JSON.parse(body);
+            var j = JSON.parse(body);
             alarm.handle(j, function(rv, err) {
                 if (err) {
                     console.log(err);
@@ -31,7 +31,7 @@ server = http.createServer(function(req, res) {
             console.log(err);
         });
     //    res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end('post received\n');
+    //    res.end('post received\n');
     //} else {
     //    console.log("GET");
     //    var html = '<html><body><form method="post" action="http://localhost:8000">Name: <input type="text" name="name" /><input type="submit" value="Submit" /></form></body>';
@@ -43,6 +43,8 @@ server = http.createServer(function(req, res) {
 
 localServer = http.createServer(function(req, res) {
 
+    //console.dir(req.param);
+
     if (req.method == 'POST') {
         console.log("POST");
         var body = '';
@@ -50,13 +52,30 @@ localServer = http.createServer(function(req, res) {
             body += data;
         });
         req.on('end', function() {
-            j = JSON.parse(body);
-            //sendPushNotifications();
+            var j = JSON.parse(body);
+            var d = {'to': 'ExponentPushToken[' + j.push_token + ']', 'title': 'Dead Man Switch Alarm', 'data': {'alarm_id': j.alarm_id}, 'body': 'Dismiss before your emergency contacts are notified'};
+            http.request({
+                hostname: 'https://exp.host/--/api/v2/push/send',
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Content-Length': Buffer.byteLength(d);
+                }
+            }, function(response) {
+                console.log('STATUS: ${response.statusCode}');
+                console.log('HEADERS: ${JSON.stringify(response.headers)}');
+                response.on('data', function(data) {
+                    console.log('BODY: ${data}');
+                });
+                    response.on('end', function() {
+                        console.log('Done sending data');
+                    }
+                }
+            });
         });
         req.on('error', function(err) {
             console.log(err);
         });
-        res.end('post received\n');
     }
 
 });

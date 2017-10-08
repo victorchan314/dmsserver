@@ -2,11 +2,6 @@ var a;
 var host;
 var port;
 
-j = JSON.parse(body);
-for (p in j) {
-    console.log(p + ": " + j[p]);
-}
-
 module.exports = {
     begin: function(h, p) {
                host = h;
