@@ -176,4 +176,5 @@ class Alarm {
   function deactivate() {
     this.active = false;
   }
+
 }
