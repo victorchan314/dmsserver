@@ -1,3 +1,5 @@
+module.exports = {
+
 function AlarmHandler() {
 	this.alarms = {}; 
 	this.weekly = [];
@@ -101,3 +103,4 @@ function AlarmHandler() {
 		return slot; 
 	}
 }
+};
