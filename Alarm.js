@@ -11,10 +11,10 @@ module.exports = {
            },
 
     handle: function(j) {
-                if (j['dismissed'] == false) {
+                if (j['dismiss'] == false) {
                     a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
                     return (1, null);
-                } else if (j['dismissed'] == true) { 
+                } else if (j['dismiss'] == true) { 
                     a.defuse(hash);
                     return (1, null);
                 } else if (false) {
