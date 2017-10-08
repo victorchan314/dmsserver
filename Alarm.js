@@ -8,7 +8,15 @@ module.exports = {
 
     add: function(push_token, alarm_ID, start_time, interval, message, contact, warning_time) {
              a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
-         }
+         },
+    
+    defuse: function(hash) {
+                a.defuse(hash);
+            },
+
+    delete: function(hash) {
+                a.delete(hash);
+            }
 };
 
 function AlarmHandler() {
