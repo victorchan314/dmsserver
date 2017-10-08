@@ -21,6 +21,9 @@ server = http.createServer(function(req, res) {
                 console.log(p + ": " + j[p]);
             }
         });
+        req.on('error', function(err) {
+            console.log(err);
+        });
     //    res.writeHead(200, {'Content-Type': 'text/html'});
         res.end('post received\n');
     //} else {
