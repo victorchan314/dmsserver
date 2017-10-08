@@ -15,16 +15,16 @@ module.exports = {
                setInterval(a.iterate, 1000);
            },
 
-    add: function(push_token, alarm_ID, start_time, interval, message, contact, warning_time) {
-             a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
-         },
-    
-    defuse: function(hash) {
-                a.defuse(hash);
-            },
-
-    del: function(hash) {
-                a.del(hash);
+    handle: function(j) {
+                if (j.HOURLY) {
+                    a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
+                } else if (j.DAILY) { 
+                    a.defuse(hash);
+                } else if (j.WEEKLY) {
+                    a.del(hash);
+                } else {
+                    return "Error: j not recognizable";
+                }
             }
 };
 
