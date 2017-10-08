@@ -2,11 +2,6 @@ var a;
 var host;
 var port;
 
-j = JSON.parse(body);
-for (p in j) {
-    console.log(p + ": " + j[p]);
-}
-
 module.exports = {
     begin: function(h, p) {
                host = h;
@@ -15,16 +10,19 @@ module.exports = {
                setInterval(a.iterate, 1000);
            },
 
-    add: function(push_token, alarm_ID, start_time, interval, message, contact, warning_time) {
-             a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
-         },
-
-    defuse: function(hash) {
-                a.defuse(hash);
-            },
-
-    del: function(hash) {
-                a.del(hash);
+    handle: function(j) {
+                if (j.HOURLY) {
+                    a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
+                    return (1, null);
+                } else if (j.DAILY) { 
+                    a.defuse(hash);
+                    return (1, null);
+                } else if (j.WEEKLY) {
+                    a.del(hash);
+                    return (1, null);
+                } else {
+                    return (0, "Error: j not recognizable");
+                }
             }
 };
 
