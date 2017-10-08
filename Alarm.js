@@ -191,10 +191,10 @@ class Alarm {
               headers: {"Content-Type" : "application/json"},
               method: 'POST'
             },
+            function (e, r, body) {
+              console.log(body);
+            });
           }
-          function (e, r, body) {
-            console.log(body);
-          });
         }
       }
     }
