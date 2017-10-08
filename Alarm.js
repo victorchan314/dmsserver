@@ -1,7 +1,16 @@
 var a;
+var ip;
+var port;
+
+j = JSON.parse(body);
+for (p in j) {
+    console.log(p + ": " + j[p]);
+}
 
 module.exports = {
-    begin: function() {
+    begin: function(i, p) {
+               ip = i;
+               port = p;
                var a = AlarmHandler();
                setInterval(a.iterate, 1000);
            },
@@ -181,7 +190,7 @@ class Alarm {
           var jm = JSON.stringify(message);
           var req = require('request');
 
-          req.post({url: 'https://exp.host/--/api/v2/push/send', 
+          req.post({url: 'https://' + ip + ':' + port, 
             body: jm,
             headers: {"Content-Type" : "application/json"},
             method: 'POST'
