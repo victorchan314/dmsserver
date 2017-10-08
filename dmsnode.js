@@ -3,7 +3,7 @@ var alarm = require('./Alarm');
 var http = require('http');
 var url = require('url');
 
-Alarm.begin();
+var port = 8000;
 
 server = http.createServer(function(req, res) {
 
@@ -32,8 +32,8 @@ server = http.createServer(function(req, res) {
 
 });
 
-server.listen(8000, function() {
+server.listen(port, function() {
     var host = server.address().address;
-    var port = 8000;
     console.log('Listening at http://' + host + ':' + port);
+    Alarm.begin(host, port);
 });
