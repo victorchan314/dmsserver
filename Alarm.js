@@ -9,7 +9,6 @@ class Alarm {
     this.interval = interval;
     this.message = message;
     this.contact = contact;
-    this.alarm_type = alarm_type;
     this.active = false;
     this.secondary = false;
   }
@@ -48,7 +47,10 @@ class Alarm {
         this.secondary = false;
       } else {
         this.secondary = true;
-        this.active = true;
+        var time = (new Date()).getTime(); 
+        if(time >= start_time) {
+          this.active = true;
+        }
       }
     }
   }
