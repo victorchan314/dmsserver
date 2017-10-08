@@ -1,3 +1,10 @@
+module.exports = {
+    begin: function() {
+               var a = AlarmHandler();
+               setInterval(a.iterate, 1000);
+           }
+};
+
 function AlarmHandler() {
 	this.alarms = {}; 
 	this.weekly = [];
