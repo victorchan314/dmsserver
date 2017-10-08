@@ -1,4 +1,4 @@
-var alarm = require('./AlarmHandler')
+var db = require('./db');
 
 var http = require('http');
 var url = require('url');
