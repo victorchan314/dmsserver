@@ -1,3 +1,33 @@
+var a;
+var host;
+var port;
+
+j = JSON.parse(body);
+for (p in j) {
+    console.log(p + ": " + j[p]);
+}
+
+module.exports = {
+    begin: function(h, p) {
+               host = h;
+               port = p;
+               var a = AlarmHandler();
+               setInterval(a.iterate, 1000);
+           },
+
+    add: function(push_token, alarm_ID, start_time, interval, message, contact, warning_time) {
+             a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
+         },
+    
+    defuse: function(hash) {
+                a.defuse(hash);
+            },
+
+    del: function(hash) {
+                a.del(hash);
+            }
+};
+
 function AlarmHandler() {
 	this.alarms = {}; 
 	this.weekly = [];
@@ -58,7 +88,7 @@ function AlarmHandler() {
 		alarm.deactivate(); 
 	}
 
-	this.delete = function(hash) {
+	this.del = function(hash) {
 		var alarm = this.alarms[hash];
 		var slot = this.getSlot(alarm); 
 		if(alarm.interval == 1) {
@@ -160,7 +190,7 @@ class Alarm {
           var jm = JSON.stringify(message);
           var req = require('request');
 
-          req.post({url: 'https://exp.host/--/api/v2/push/send', 
+          req.post({url: 'https://' + host + ':' + port, 
             body: jm,
             headers: {"Content-Type" : "application/json"},
             method: 'POST'
