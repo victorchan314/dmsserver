@@ -1,9 +1,9 @@
-var db = require('./db');
+var alarm = require('./Alarm');
 
 var http = require('http');
 var url = require('url');
 
-db.begin();
+Alarm.begin();
 
 server = http.createServer(function(req, res) {
 
