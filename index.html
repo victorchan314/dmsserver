@@ -1,6 +1,6 @@
 <html>
 <body>
-    <form method="post" action="http://71.202.180.48:8000">
+    <form method="post" action="http://192.168.0.14:8000">
         Name: <input type="text" name="name" />
         <input type="submit" value="Submit" />
     </form>
@@ -9,7 +9,7 @@
         console.log('begin');
         var http = new XMLHttpRequest();
         var params = "text=stuff";
-        http.open("POST", "http://71.202.180.48:8000", true);
+        http.open("POST", "http://192.168.0.14:8000", true);
 
         http.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         //http.setRequestHeader("Content-length", params.length);

@@ -1,4 +1,5 @@
-http = require('http');
+var http = require('http');
+var url = require('url');
 http.createServer(function(req, res) {
 
     console.dir(req.param);
@@ -22,8 +23,8 @@ http.createServer(function(req, res) {
         res.end(html);
     }
 
-}).listen(8000);
-
-host = '71.202.180.48';
-port = 8000;
-console.log('Listening at http://' + host + ':' + port);
+}).listen(8000, '0.0.0.0', function() {
+    var host = '192.168.0.14'
+    var port = 8000;
+    console.log('Listening at http://' + host + ':' + port);
+});
