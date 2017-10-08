@@ -35,5 +35,5 @@ server = http.createServer(function(req, res) {
 server.listen(port, function() {
     var host = server.address().address;
     console.log('Listening at http://' + host + ':' + port);
-    Alarm.begin(host, port);
+    alarm.begin(host, port);
 });
