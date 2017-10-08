@@ -134,7 +134,7 @@ class Alarm {
   constructor(push_token, alarm_id, start_time, interval, message, contact, warning_time) {
     this.push_token = push_token;
     this.alarm_id = alarm_id;
-    this.start_time = start_time
+    this.start_time = start_time;
     this.interval = interval;
     this.message = message;
     this.contact = contact;
