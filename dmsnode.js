@@ -17,7 +17,7 @@ server = http.createServer(function(req, res) {
             }
         });
     //    res.writeHead(200, {'Content-Type': 'text/html'});
-        res.end('post received');
+        res.end('post received\n');
     //} else {
     //    console.log("GET");
     //    var html = '<html><body><form method="post" action="http://localhost:8000">Name: <input type="text" name="name" /><input type="submit" value="Submit" /></form></body>';
@@ -27,7 +27,7 @@ server = http.createServer(function(req, res) {
 
 });
 
-server.listen(8000, '71.202.180.48', function() {
+server.listen(8000, function() {
     var host = server.address().address;
     var port = 8000;
     console.log('Listening at http://' + host + ':' + port);
