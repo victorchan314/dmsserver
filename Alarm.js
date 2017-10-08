@@ -2,7 +2,7 @@ class Alarm {
   const HOURLY = 1;
   const DAILY = 2;
   const WEEKLY = 3;
-  constructor(push_token, alarm_id, start_time, interval, message, contact) {
+  constructor(push_token, alarm_id, start_time, interval, message, contact, warning_time) {
     this.push_token = push_token;
     this.alarm_id = alarm_id;
     this.start_time = start_time
