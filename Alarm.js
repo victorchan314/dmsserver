@@ -18,12 +18,15 @@ module.exports = {
     handle: function(j) {
                 if (j.HOURLY) {
                     a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
+                    return (1, null);
                 } else if (j.DAILY) { 
                     a.defuse(hash);
+                    return (1, null);
                 } else if (j.WEEKLY) {
                     a.del(hash);
+                    return (1, null);
                 } else {
-                    return "Error: j not recognizable";
+                    return (0, "Error: j not recognizable");
                 }
             }
 };

@@ -18,8 +18,13 @@ server = http.createServer(function(req, res) {
         });
         req.on('end', function() {
             j = JSON.parse(body);
-            alarm.handle(j, function(err) {
-                console.log(err);
+            alarm.handle(j, function(rv, err) {
+                if (err) {
+                    console.log(err);
+                    res.end('Error handling data');
+                } else {
+                    res.end('Data received');
+                }
             });
         });
         req.on('error', function(err) {
