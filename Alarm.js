@@ -10,14 +10,39 @@ class Alarm {
     this.message = message;
     this.contact = contact;
     this.alarm_type = alarm_type;
-    this.active = true;
-    this.secondary = true;
+    this.active = false;
+    this.secondary = false;
   }
 
   function visit() {
     if (this.active) {
       this.active = false;
-      //
+
+      const SparkPost = require('sparkpost');
+      const sparky = new SparkPost('4a843e27ca62861e8346c5b52400e892351e82dd');
+
+      sparky.transmissions.send({
+          options: {
+            sandbox: true
+          },
+          content: {
+            from: 'testing@sparkpostbox.com',
+            subject: '___ has missed an alarm!',
+            html:'<html><body><p>' + this.message + '</p></body></html>'
+          },
+          recipients: [
+            {address: this.contact}
+          ]
+        })
+        .then(data => {
+          console.log('transmission successful');
+          console.log(data);
+        })
+        .catch(err => {
+          console.log('Whoops! Something went wrong');
+          console.log(err);
+        });
+
     } else {
       if (this.secondary) {
         this.secondary = false;
