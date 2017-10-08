@@ -11,7 +11,7 @@ module.exports = {
     begin: function(h, p) {
                host = h;
                port = p;
-               var a = AlarmHandler();
+               var a = new AlarmHandler();
                setInterval(a.iterate, 1000);
            },
 
