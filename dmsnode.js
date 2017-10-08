@@ -3,7 +3,7 @@ var db = require('./db');
 var http = require('http');
 var url = require('url');
 
-
+db.begin();
 
 server = http.createServer(function(req, res) {
 
