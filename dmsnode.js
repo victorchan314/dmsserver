@@ -1,6 +1,6 @@
 var http = require('http');
 var url = require('url');
-http.createServer(function(req, res) {
+server = http.createServer(function(req, res) {
 
     //console.dir(req.param);
 
@@ -11,13 +11,13 @@ http.createServer(function(req, res) {
             body += data;
         });
         req.on('end', function() {
-            var j = JSON.parse(body);
+            j = JSON.parse(body);
             for (p in j) {
                 console.log(p + ": " + j[p]);
             }
         });
     //    res.writeHead(200, {'Content-Type': 'text/html'});
-    //    res.end('post received');
+        res.end('post received');
     //} else {
     //    console.log("GET");
     //    var html = '<html><body><form method="post" action="http://localhost:8000">Name: <input type="text" name="name" /><input type="submit" value="Submit" /></form></body>';
@@ -25,8 +25,10 @@ http.createServer(function(req, res) {
     //    res.end(html);
     }
 
-}).listen(8000, '0.0.0.0', function() {
-    var host = '192.168.0.14'
+});
+
+server.listen(8000, '71.202.180.48', function() {
+    var host = server.address().address;
     var port = 8000;
     console.log('Listening at http://' + host + ':' + port);
 });
