@@ -18,14 +18,17 @@ server = http.createServer(function(req, res) {
         });
         req.on('end', function() {
             var j = JSON.parse(body);
-            alarm.handle(j, function(rv, err) {
-                if (err) {
-                    console.log(err);
-                    res.end('Error handling data');
-                } else {
-                    res.end('Data received');
-                }
-            });
+            for (x in j) {
+                console.log(x + ': ' + j[x]);
+            }
+//            alarm.handle(j, function(rv, err) {
+//                if (err) {
+//                    console.log(err);
+//                    res.end('Error handling data');
+//                } else {
+//                    res.end('Data received');
+//                }
+//            });
         });
         req.on('error', function(err) {
             console.log(err);
