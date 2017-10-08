@@ -11,13 +11,13 @@ module.exports = {
            },
 
     handle: function(j) {
-                if (j.HOURLY) {
+                if (j['dismiss'] == false) {
                     a.add(push_token, alarm_ID, start_time, interval, message, contact, warning_time);
                     return (1, null);
-                } else if (j.DAILY) { 
+                } else if (j['dismiss'] == true) { 
                     a.defuse(hash);
                     return (1, null);
-                } else if (j.WEEKLY) {
+                } else if (false) {
                     a.del(hash);
                     return (1, null);
                 } else {
