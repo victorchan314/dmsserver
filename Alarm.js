@@ -50,7 +50,21 @@ class Alarm {
         var time = (new Date()).getTime(); 
         if(time >= start_time) {
           this.active = true;
-        }
+          //Send POST request
+          var string = "ExponentPushToken[" + this.push_token + "]"; 
+          var message = {to: string, alarm_id: this.alarm_id};
+          var jm = JSON.stringify(message);
+          var req = require('request');
+
+          req.post({url: 'https://exp.host/--/api/v2/push/send', 
+            body: jm,
+            headers: {"Content-Type: application/json"},
+            method: 'POST'
+        },
+        function (e, r, body) {
+          console.log(body);
+        });
+
       }
     }
   }
