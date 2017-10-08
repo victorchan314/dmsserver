@@ -9,10 +9,12 @@ http.createServer(function(req, res) {
         var body = '';
         req.on('data', function(data) {
             body += data;
-            console.log("Partial body: " + body);
         });
         req.on('end', function() {
-            console.log("Body: " + body);
+            var j = JSON.parse(body);
+            for (p in j) {
+                console.log(p + ": " + j[p]);
+            }
         });
     //    res.writeHead(200, {'Content-Type': 'text/html'});
     //    res.end('post received');
