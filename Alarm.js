@@ -14,8 +14,8 @@ module.exports = {
                 a.defuse(hash);
             },
 
-    delete: function(hash) {
-                a.delete(hash);
+    del: function(hash) {
+                a.del(hash);
             }
 };
 
@@ -79,7 +79,7 @@ function AlarmHandler() {
 		alarm.deactivate(); 
 	}
 
-	this.delete = function(hash) {
+	this.del = function(hash) {
 		var alarm = this.alarms[hash];
 		var slot = this.getSlot(alarm); 
 		if(alarm.interval == 1) {
